@@ -55,7 +55,7 @@ module TinySync::NoBrainerTests
       assert_equal n/6, posts[:deleted].length
 
       created_post = Post.where(title: new_posts.first[:title]).first
-      
+      assert_equal 'alive', created_post.sync_state
     end
 
   end
