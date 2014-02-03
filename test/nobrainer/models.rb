@@ -4,19 +4,19 @@ require 'nobrainer'
 require 'tinysync/syncable'
 
 module TinySync::NoBrainerTests
-  NoBrainer::Document::Attributes::VALID_FIELD_OPTIONS << :type
-
 
   class Author
     include NoBrainer::Document
+    include NoBrainer::Document::Timestamps
     include TinySync::Syncable
+    include TinySync::SyncRoot
 
     field :name
     validates :name, presence: true, uniqueness: true
 
     field :age, type: Integer
 
-    field :seniority
+    field :seniority, default: 'junior'
     validates :seniority, inclusion: {in: %w(junior senior)}
 
     has_many :posts
@@ -24,7 +24,9 @@ module TinySync::NoBrainerTests
 
   class Post
     include NoBrainer::Document
+    include NoBrainer::Document::Timestamps
     include TinySync::Syncable
+    include TinySync::SyncRoot
 
     field :title, type: String, index: true
     validates :title, presence: true, uniqueness: true
@@ -43,6 +45,7 @@ module TinySync::NoBrainerTests
 
   class Comment
     include NoBrainer::Document
+    include NoBrainer::Document::Timestamps
     include TinySync::Syncable
 
     field :body, default: 'First Post!'

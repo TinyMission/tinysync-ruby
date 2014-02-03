@@ -5,3 +5,5 @@ gemspec
 
 
 gem "nobrainer", github: 'nviennot/nobrainer'
+
+gem 'activesupport'

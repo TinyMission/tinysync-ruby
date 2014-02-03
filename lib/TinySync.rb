@@ -1,6 +1,7 @@
 require 'tinysync/version'
 require 'tinysync/util'
 require 'tinysync/config'
+require 'tinysync/syncer'
 require 'tinysync/wrappers/nobrainer_wrapper'
 
 module TinySync
@@ -25,6 +26,11 @@ module TinySync
 
     def schema
       self.wrapper.get_schema @config
+    end
+
+    def sync(request)
+      syncer = Syncer.new @config, self.wrapper
+      syncer.run request
     end
 
   end

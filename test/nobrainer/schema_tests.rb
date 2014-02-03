@@ -1,5 +1,6 @@
 require 'nobrainer/nobrainer_case'
 
+require 'nobrainer/models'
 
 module TinySync::NoBrainerTests
 
@@ -19,7 +20,7 @@ module TinySync::NoBrainerTests
     end
 
     def test_timestamps
-      fields = @tables.first()[:fields]
+      fields = @tables.first[:fields]
       created_at_field = fields.select_named 'created_at'
       updated_at_field = fields.select_named 'updated_at'
       assert_equal 'time', created_at_field[:type]
@@ -42,6 +43,11 @@ module TinySync::NoBrainerTests
       sync_state_field = @comments[:fields].select_named('sync_state')
       assert_not_nil sync_state_field
       assert_equal 'string', sync_state_field[:type]
+    end
+
+    def test_sync_roots
+      assert @posts[:is_root]
+      assert !@comments[:is_root]
     end
 
   end

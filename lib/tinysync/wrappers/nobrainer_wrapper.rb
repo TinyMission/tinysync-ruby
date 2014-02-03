@@ -5,6 +5,10 @@ require 'json'
 # wrapper for NoBrainer models
 class TinySync::NoBrainerWrapper
 
+  def get_table_name(document_type)
+    document_type.tableize.gsub('/', '__')
+  end
+
   def get_type(name, type)
     if type
       type.to_s.downcase
@@ -28,7 +32,8 @@ class TinySync::NoBrainerWrapper
       puts ''
       table = {
           name: doc.name.split(':').last.tableize,
-          fields: []
+          fields: [],
+          is_root: doc.is_sync_root
       }
 
       # parse the fields
@@ -68,6 +73,11 @@ class TinySync::NoBrainerWrapper
     puts ''
     #puts "== schema: #{JSON.pretty_generate(schema)}"
     schema
+  end
+
+
+  def root_models
+    NoBrainer::Document.all.select {|doc| doc.is_sync_root}
   end
 
 

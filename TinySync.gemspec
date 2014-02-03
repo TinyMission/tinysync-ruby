@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Andy Selvig"]
   spec.email         = ["ajselvig@gmail.com"]
   spec.description   = "TinySync is a set of libraries to allow automatic data synchronization across multiple platforms."
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.summary       = "Ruby server library for TinySync."
   spec.homepage      = ""
   spec.license       = "MIT"
 

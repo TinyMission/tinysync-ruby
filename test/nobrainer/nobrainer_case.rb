@@ -1,5 +1,4 @@
 require 'test_helpers'
-require 'nobrainer/models'
 
 module TinySync::NoBrainerTests
 
@@ -7,17 +6,23 @@ module TinySync::NoBrainerTests
 
     def setup
       NoBrainer.configure do |config|
-        config.rethinkdb_url          = 'tinysync_test'
+        config.rethinkdb_url          = 'rethinkdb://localhost/tinysync_test'
         config.logger                 = Logger.new $stdout
         config.warn_on_active_record  = true
         config.auto_create_databases  = true
         config.auto_create_tables     = true
-        config.cache_documents        = true
-        config.max_reconnection_tries = 10
+        config.max_reconnection_tries = 2
       end
+
 
       TinySync.configure do |config|
         config.dialect = :nobrainer
+      end
+    end
+
+    def drop_all
+      NoBrainer::Document.all.each do |doc|
+        doc.delete_all
       end
     end
 
