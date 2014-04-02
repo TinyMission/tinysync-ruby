@@ -2,6 +2,7 @@ require 'tinysync/version'
 require 'tinysync/util'
 require 'tinysync/config'
 require 'tinysync/syncer'
+require 'tinysync/syncable'
 require 'tinysync/wrappers/nobrainer_wrapper'
 
 module TinySync
