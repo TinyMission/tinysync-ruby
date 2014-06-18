@@ -2,7 +2,7 @@ require 'test_helpers'
 
 module TinySync::NoBrainerTests
 
-  class NoBrainerCase < Test::Unit::TestCase
+  class NoBrainerCase < Minitest::Test
 
     def setup
       NoBrainer.configure do |config|

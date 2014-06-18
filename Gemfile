@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gemspec
 
 
-gem "nobrainer", github: 'nviennot/nobrainer'
+gem "nobrainer"#, github: 'nviennot/nobrainer'
 
 gem 'activesupport'
+
+gem 'minitest'

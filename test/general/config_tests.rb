@@ -2,7 +2,7 @@ require 'test_helpers'
 
 module TinySync::GeneralTests
 
-  class ConfigTests < Test::Unit::TestCase
+  class ConfigTests < Minitest::Test
 
     def test_invalid_dialect
       assert_raise RuntimeError do

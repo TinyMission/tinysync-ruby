@@ -1,2 +1,5 @@
-require 'test/unit'
+# require 'test/unit'
+require 'minitest'
+require 'minitest/test'
+require 'minitest/autorun'
 require 'TinySync'

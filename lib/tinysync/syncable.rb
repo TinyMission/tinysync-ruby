@@ -4,16 +4,20 @@ module TinySync::Syncable
 
   extend ActiveSupport::Concern
 
-  @@possible_states = %w(alive dead)
+  @@state_names = %w(alive dead)
 
 
   included do
 
-    field :sync_state, default: @@possible_states.first
-    validates :sync_state, presence: true, inclusion: {in: @@possible_states}
+    field :sync_state, type: Integer, default: 0
+    validates :sync_state, presence: true, numericality: true
 
     def self.is_sync_root
       false
+    end
+
+    def sync_state_name
+      @@state_names[self.sync_state]
     end
 
   end

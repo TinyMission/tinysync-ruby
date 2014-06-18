@@ -162,9 +162,6 @@ Designing an appropriate *sync scope* is the key to having a system that syncs q
 NOTE: The *last_synced* time from the request will be automatically included into the scope to test against *updated_at* in the database.
 
 
-### Code Generation
-
-Coming Soon...
 
 
 ## Contributing
