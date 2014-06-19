@@ -4,20 +4,20 @@ module TinySync::Syncable
 
   extend ActiveSupport::Concern
 
-  @@state_names = %w(alive dead)
+  @@state_names = %w(active inactive deleted)
 
 
   included do
 
-    field :sync_state, type: Integer, default: 0
-    validates :sync_state, presence: true, numericality: true
+    field :_state, type: Integer, default: 0
+    validates :_state, presence: true, numericality: true
 
     def self.is_sync_root
       false
     end
 
-    def sync_state_name
-      @@state_names[self.sync_state]
+    def state_name
+      @@state_names[self._state]
     end
 
   end
