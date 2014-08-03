@@ -30,7 +30,7 @@ module TinySync::NoBrainerTests
                             points: rand(10)
         case i%3
           when 0
-            post.update_attributes! created_at: Time.now-1.days, sync_state: 'dead'
+            post.update_attributes! created_at: Time.now-1.days, _state: 2
           when 1
             post.update_attributes! created_at: Time.now-1.days
         end
@@ -55,7 +55,7 @@ module TinySync::NoBrainerTests
       assert_equal n/6, posts[:deleted].length
 
       created_post = Post.where(title: new_posts.first[:title]).first
-      assert_equal 'alive', created_post.sync_state
+      assert_equal 0, created_post._state
     end
 
   end

@@ -87,7 +87,7 @@ class TinySync::Syncer
         updated_scope = scope.dup
         updated_scope[:created_at.lt] = @last_synced
         updated_scope[:updated_at.gte] = @last_synced
-        updated_scope[:sync_state] = 'alive'
+        updated_scope[:_state] = 0
         updated_records = model.where(updated_scope).raw.to_a
       rescue Exception => e
         @logger.warn "Error getting updated records on the server: #{e.message}"
@@ -98,7 +98,7 @@ class TinySync::Syncer
         dead_scope = scope.dup
         dead_scope[:created_at.lt] = @last_synced
         dead_scope[:updated_at.gte] = @last_synced
-        dead_scope[:sync_state] = 'dead'
+        dead_scope[:_state] = 2
         dead_records = model.where(dead_scope).raw.to_a
       rescue Exception => e
         @logger.warn "Error getting new records on the server: #{e.message}"
@@ -144,7 +144,7 @@ class TinySync::Syncer
         record = nil
         begin
           record = model.find id
-          record.update_attributes sync_state: 'deleted'
+          record.update_attributes _state: 'deleted'
         rescue Exception => e
           @logger.error "Could not find #{name} with id #{id}"
         end

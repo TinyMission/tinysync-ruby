@@ -40,9 +40,9 @@ module TinySync::NoBrainerTests
     end
 
     def test_syncable
-      sync_state_field = @comments[:fields].select_named('sync_state')
-      assert_not_nil sync_state_field
-      assert_equal 'string', sync_state_field[:type]
+      _state_field = @comments[:fields].select_named('_state')
+      assert _state_field
+      assert_equal 'integer', _state_field[:type]
     end
 
     def test_sync_roots

@@ -3,7 +3,7 @@ require 'active_model'
 require 'nobrainer'
 require 'tinysync/syncable'
 
-module TinySync::NoBrainerTests
+# module TinySync::NoBrainerTests
 
   class Author
     include NoBrainer::Document
@@ -57,4 +57,4 @@ module TinySync::NoBrainerTests
     belongs_to :post, index: true
   end
 
-end
+# end
