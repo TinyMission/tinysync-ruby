@@ -77,7 +77,7 @@ class TinySync::NoBrainerWrapper
 
 
   def root_models
-    NoBrainer::Document.all.select {|doc| doc.is_sync_root}
+    NoBrainer::Document.all.select {|doc| doc.respond_to?(:is_sync_root) && doc.is_sync_root}
   end
 
 
